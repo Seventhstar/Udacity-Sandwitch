@@ -13,6 +13,8 @@ import com.udacity.sandwichclub.utils.JsonUtils;
 
 import org.json.JSONException;
 
+import java.util.List;
+
 public class DetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_POSITION = "extra_position";
@@ -20,6 +22,8 @@ public class DetailActivity extends AppCompatActivity {
 
     private TextView placeOfOriginTextView;
     private TextView descriptionTextView;
+    private TextView alsoKnownTextView;
+    private TextView ingridientsTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,8 @@ public class DetailActivity extends AppCompatActivity {
         ImageView ingredientsIv = findViewById(R.id.image_iv);
         placeOfOriginTextView = findViewById(R.id.detail_place_of_origin_tv);
         descriptionTextView = findViewById(R.id.description_tv);
+        alsoKnownTextView = findViewById(R.id.also_known_tv);
+        ingridientsTextView = findViewById(R.id.ingredients_tv);
 
         Intent intent = getIntent();
         if (intent == null) {
@@ -82,11 +88,26 @@ public class DetailActivity extends AppCompatActivity {
             placeOfOriginTextView.setText(getString(R.string.detail_origin_not_set));
         }
 
-        descriptionTextView.setText(sandwich.getDescription());
+        descriptionTextView.setText("    " + sandwich.getDescription());
+        alsoKnownTextView.setText(listToString(sandwich.getAlsoKnownAs()));
+        ingridientsTextView.setText(listToString(sandwich.getIngredients()));
+    }
 
+    private String listToString(List<String> list) {
+        if (list != null && !list.isEmpty()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (String str : list) {
+                stringBuilder.append(str + ", ");
+            }
+            stringBuilder.setLength(stringBuilder.length() - 2);
+            return stringBuilder.toString();
+        }
+        return "";
     }
 
     private void setEmptyTexts() {
         setTitle("");
+        placeOfOriginTextView.setText("");
+        descriptionTextView.setText("");
     }
 }

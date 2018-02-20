@@ -5,6 +5,7 @@ import android.content.Context;
 import com.udacity.sandwichclub.R;
 import com.udacity.sandwichclub.model.Sandwich;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,9 +34,11 @@ public class JsonUtils {
         String imageUrl = jsonObject.getString(
                 context.getString(R.string.json_key_image));
 
+        List<String> alsoKnownAsList = getArrayFromJSON(context, rootObject,
+                R.string.json_key_also_known);
 
-        List<String> ingredientsList = new ArrayList<>();
-        List<String> alsoKnownAsList = new ArrayList<>();
+        List<String> ingredientsList = getArrayFromJSON(context, jsonObject,
+                R.string.json_key_ingredients);
 
         return new Sandwich(mainName,
                 alsoKnownAsList,
@@ -45,4 +48,14 @@ public class JsonUtils {
                 ingredientsList);
     }
 
+    private static ArrayList<String> getArrayFromJSON(Context context,
+                                                      JSONObject nodeJson,
+                                                      int id) throws JSONException {
+        ArrayList<String> list = new ArrayList<>();
+        JSONArray array = nodeJson.getJSONArray(context.getString(id));
+        for (int i = 0; i < array.length(); i++) {
+            list.add(array.getString(i));
+        }
+        return list;
+    }
 }

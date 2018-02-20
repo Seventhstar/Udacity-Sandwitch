@@ -18,6 +18,8 @@
     <string name="detail_origin_not_set"><![CDATA[<unknown>]]></string>
     <string name="json_key_description">description</string>
     <string name="json_key_image">image</string>
+    <string name="json_key_also_known">alsoKnownAs</string>
+    <string name="json_key_ingredients">ingredients</string>
 
 
     <string-array name="sandwich_names">
