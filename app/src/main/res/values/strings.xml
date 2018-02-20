@@ -12,6 +12,13 @@
 
     <!-- Error messages-->
     <string name="detail_error_message">Sandwich data not available</string>
+    <string name="json_key_root_name">name</string>
+    <string name="json_key_main_name">mainName</string>
+    <string name="json_key_place_of_origin">placeOfOrigin</string>
+    <string name="detail_origin_not_set"><![CDATA[<unknown>]]></string>
+    <string name="json_key_description">description</string>
+    <string name="json_key_image">image</string>
+
 
     <string-array name="sandwich_names">
         <item>Ham and cheese sandwich</item>
